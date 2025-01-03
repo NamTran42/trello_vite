@@ -12,7 +12,7 @@ const theme = extendTheme({
     dark: {
       palette: {
         primary: {
-          main: "#ff5252",
+          main: "#003232",
         },
       },
     },
