@@ -8,6 +8,8 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import NightlightIcon from "@mui/icons-material/Nightlight";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 import Box from "@mui/material/Box";
+import { Palette } from "@mui/icons-material";
+import { colors } from "@mui/material";
 
 function ModeSelect() {
   const { mode, setMode } = useColorScheme();
@@ -17,23 +19,26 @@ function ModeSelect() {
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+    <FormControl size="small" xs={{ minWidth: "120px" }}>
       <InputLabel id="label-select-dark-light-mode">Mode</InputLabel>
       <Select
         labelId="label-select-dark-light-mode"
         id="select-dark-light-mode"
         value={mode}
         label="Mode"
-        onChange={handleChange}>
+        onChange={handleChange}
+      >
         <MenuItem value={"light"}>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               gap: 1,
-            }}>
+              color: "white"
+            }}
+          >
             <LightModeIcon fontSize="small" />
-            Light
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>Light</Box>
           </Box>
         </MenuItem>
         <MenuItem value={"dark"}>
@@ -42,9 +47,10 @@ function ModeSelect() {
               display: "flex",
               alignItems: "center",
               gap: 1,
-            }}>
+            }}
+          >
             <NightlightIcon fontSize="small" />
-            Dark
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>Dark</Box>
           </Box>
         </MenuItem>
         <MenuItem value={"system"}>
@@ -53,7 +59,8 @@ function ModeSelect() {
               display: "flex",
               alignItems: "center",
               gap: 1,
-            }}>
+            }}
+          >
             <SettingsBrightnessIcon fontSize="small" />
             System
           </Box>
@@ -63,4 +70,4 @@ function ModeSelect() {
   );
 }
 
-export default ModeSelect
+export default ModeSelect;

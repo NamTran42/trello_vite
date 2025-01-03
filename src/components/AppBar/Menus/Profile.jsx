@@ -24,7 +24,7 @@ function Profile() {
     setAnchorEl(null);
   };
   return (
-    <Box>
+    <Box sx={{ color: "white" }}>
       <Tooltip title="Account settings">
         <IconButton
           onClick={handleClick}

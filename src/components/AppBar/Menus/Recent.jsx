@@ -13,7 +13,7 @@ import ContentCopy from "@mui/icons-material/ContentCopy";
 import ContentPaste from "@mui/icons-material/ContentPaste";
 import Cloud from "@mui/icons-material/Cloud";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 function Recent() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -27,6 +27,7 @@ function Recent() {
   return (
     <>
       <Button
+        sx={{ color: "white" }}
         id="basic-button-recent"
         aria-controls={open ? "basic-menu-recent" : undefined}
         aria-haspopup="true"

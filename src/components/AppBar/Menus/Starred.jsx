@@ -13,7 +13,7 @@ import ContentCopy from "@mui/icons-material/ContentCopy";
 import ContentPaste from "@mui/icons-material/ContentPaste";
 import Cloud from "@mui/icons-material/Cloud";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 function Starred() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -27,6 +27,7 @@ function Starred() {
   return (
     <>
       <Button
+        sx={{ color: "white" }}
         id="basic-button-starred"
         aria-controls={open ? "basic-menu-starred" : undefined}
         aria-haspopup="true"
