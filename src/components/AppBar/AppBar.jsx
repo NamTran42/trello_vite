@@ -33,9 +33,8 @@ function AppBar() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        bgcolor: (theme) => {
-          theme.palette.mode === "dark" ? "#2c3e50" : "#1565c0";
-        },
+        bgcolor: (theme) =>
+          theme.palette.mode === "dark" ? "#2c3e50" : "#1565co",
         gap: 2,
         overflowX: "auto",
       }}
@@ -95,7 +94,10 @@ function AppBar() {
             endAdornment: (
               <CloseIcon
                 fontSize="small"
-                sx={{ color: searchValue ? "white" : "transparent", cursor: "pointer" }}
+                sx={{
+                  color: searchValue ? "white" : "transparent",
+                  cursor: "pointer",
+                }}
                 onClick={() => setSearchValue("")}
               />
             ),
@@ -117,7 +119,7 @@ function AppBar() {
         <ModeSelect />
         <Tooltip title="Notification">
           <Badge
-            color="secondary"
+            color="warning"
             variant="dot"
             sx={{ cursor: "pointer", color: "white" }}
           >
@@ -127,7 +129,7 @@ function AppBar() {
 
         <Tooltip title="Help">
           <Badge
-            color="secondary"
+            color="warning"
             variant="dot"
             sx={{ cursor: "pointer", color: "white" }}
           >
