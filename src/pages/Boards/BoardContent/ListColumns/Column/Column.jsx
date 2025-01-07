@@ -14,14 +14,27 @@ import ContentPaste from "@mui/icons-material/ContentPaste";
 import Cloud from "@mui/icons-material/Cloud";
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Tooltip from "@mui/material/Tooltip";
 import DeleteForever from "@mui/icons-material/DeleteForever";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
 import ListCards from "./ListCards/ListCards";
+import { mapOrder } from "~/utils/sorts";
 
-function Column() {
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+function Column({ column }) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: column._id, data: { ...column } });
+
+  const dndKitColumnStyles = {
+    // If you use Transfrom like docs then get error stretch(UI) => use Translate(keep origin element, not scale)
+    transform: CSS.Translate.toString(transform),
+    transition,
+    // touchAction:'none' //use sendor default of PointerSensor
+  };
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -30,6 +43,8 @@ function Column() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
   return (
     <Box
       sx={{
@@ -43,6 +58,10 @@ function Column() {
         maxHeight: (theme) =>
           `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`,
       }}
+      ref={setNodeRef}
+      style={dndKitColumnStyles}
+      {...attributes}
+      {...listeners}
     >
       {/* Box column header  */}
       <Box
@@ -63,7 +82,7 @@ function Column() {
           }}
         >
           {" "}
-          Column title
+          {column?.title}
         </Typography>
         <Box>
           <Tooltip title="More options">
@@ -134,7 +153,7 @@ function Column() {
       </Box>
 
       {/* Box list card  */}
-      <ListCards />
+      <ListCards cards={orderedCards} />
 
       {/* Box column footer  */}
       <Box

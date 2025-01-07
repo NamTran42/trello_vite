@@ -11,22 +11,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import CommentIcon from "@mui/icons-material/Comment";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 
-function Card({ tempolaryMedia }) {
-  if (tempolaryMedia) {
-    return (
-      <MuiCard
-        sx={{
-          cursor: "pointer",
-          boxShadow: "0 1px 1px rgba(0, 0 ,0 ,0.2)",
-          overflow: "unset",
-        }}
-      >
-        <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-          <Typography>NamTD Test </Typography>
-        </CardContent>
-      </MuiCard>
-    );
-  }
+function Card({ card }) {
   return (
     <MuiCard
       sx={{
@@ -35,23 +20,23 @@ function Card({ tempolaryMedia }) {
         overflow: "unset",
       }}
     >
-      <CardMedia
-        sx={{ height: 140 }}
-        image="http://saigoncomputer.vn/uploads/hinh-nen-may-tinh-cuc-dep(4).jpg"
-        title="green iguana"
-      />
+      {card?.cover && (
+        <CardMedia sx={{ height: 140 }} image={card.cover} title={card.title} />
+      )}
       <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-        <Typography>NamTD</Typography>
+        <Typography>{card?.title}</Typography>
       </CardContent>
       <CardActions sx={{ p: "0 4px 8px 4px" }}>
         <Button size="small" startIcon={<GroupIcon />}>
-          20
+          {card?.memberIds?.length ? card?.memberIds?.length : 0}
         </Button>
+
         <Button size="small" startIcon={<CommentIcon />}>
-          15
+          {card?.comments?.length ? card?.comments?.length : 0}
         </Button>
+
         <Button size="small" startIcon={<AttachFileIcon />}>
-          18
+          {card?.attachments?.length ? card?.attachments?.length : 0}
         </Button>
       </CardActions>
     </MuiCard>
